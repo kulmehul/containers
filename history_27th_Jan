@@ -1,0 +1,24 @@
+977  kubectl  get pods --server https://192.168.59.104:8443           --client-key   /root/client.key   --client-certificate  /root/client.crt   
+  978  kubectl  get pods --server https://192.168.59.104:8443           --client-key   /root/client.key   --client-certificate  /root/client.crt      --certificate-authority   /root/ca.crt   
+  979  kubectl  delete  pods --all   --server https://192.168.59.104:8443           --client-key   /root/client.key   --client-certificate  /root/client.crt      --certificate-authority   /root/ca.crt   
+  980  kubectl  get pods --server https://192.168.59.104:8443           --client-key   /root/client.key   --client-certificate  /root/client.crt      --certificate-authority   /root/ca.crt   
+  981  kubectl  config view 
+  982  kubectl  config view  > mykube.config 
+  983  kubectl  get pods --server https://192.168.59.104:8443           --client-key   /root/client.key   --client-certificate  /root/client.crt      --certificate-authority   /root/ca.crt   
+  984  kubectl  get pods  
+  985  kubectl  get pods   --kubeconfig mykube.config 
+  986  kubectl  get pods 
+  987  whoami
+  988  pwd
+  989  cd
+  990  mkdir .kube
+  991  cd .kube/
+  992  ls
+  993  cd ..
+  994  cp mykube.config   /root/.kube/config 
+  995  kubectl   get pods  
+  996  vim mykube.config  
+  997  kubectl config view 
+  998  ls
+  999  kubectl config view  --kubeconfig  mykube.config 
+

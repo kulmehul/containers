@@ -1,0 +1,58 @@
+create namespace
+# kubectl create ns testing
+
+1. create user
+
+#openssl  genrsa  -out eric.key  1024
+#openssl req  -new -key eric.key  -out eric.csr  -subj '/CN=eric/O=tech'
+# openssl  x509 -req  -in  eric.csr   -out eric.crt  -CAkey ca.key  -CA ca.crt     -CAcreateserial
+
+
+set at client side:
+# kubectl config set-credentials eric --client-key="C:\Users\Vimal Daga\.minikube\profiles\minikube\eric.key"  --client-certificate="C:\Users\Vimal Daga\.minikube\profiles\minikube\eric.crt"
+# kubectl config set-context myericcontext  --user=eric  --cluster=minikube
+# kubectl config  use-context  myericcontext
+
+# kubectl get pods  -n testing
+
+or 
+
+
+
+2. own custom Role
+
+admin account # kubectl config  use-context minikube
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: testing
+  name: mymonitor-role
+rules:
+  - apiGroups: [""]
+    resources: [ "pods"]
+    verbs: [ "list"]
+
+
+
+
+3. role binding
+
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: eric-user-montoring-binding
+  namespace: testing
+subjects:
+  - kind: User
+    name: eric
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: mymonitor-role
+  apiGroup: rbac.authorization.k8s.io
+
+
+
+
